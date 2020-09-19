@@ -1,0 +1,20 @@
+https://www.tutorialkart.com/apache-kafka/kafka-connector-mysql-jdbc/
+
+		
+		
+name=test-source-mysql-jdbc-autoincrement
+connector.class=io.confluent.connect.jdbc.JdbcSourceConnector
+tasks.max=1
+connection.url=jdbc:mysql://localhost:3306/productdb?allowPublicKeyRetrieval=true&useSSL=FALSE&user=root&password=root
+mode=bulk
+catalog.pattern=rollno
+topic.prefix=test-mysql-jdbc-
+table.whitelist=item
+poll.interval.ms=3600000
+
+
+https://docs.confluent.io/current/connect/kafka-connect-jdbc/source-connector/index.html#jdbc-source-configs-overview
+
+/opt/kafka/confluent-5.5.1/bin/connect-standalone /opt/kafka/confluent-5.5.1/etc/schema-registry/connect-avro-standalone.properties /opt/kafka/confluent-5.5.1/etc/kafka-connect-jdbc/source-quickstart-mysql.properties
+
+/usr/bin/connect-standalone /etc/schema-registry/connect-avro-standalone.properties/etc/kafka-connect-jdbc/source-quickstart-mysql.properties
