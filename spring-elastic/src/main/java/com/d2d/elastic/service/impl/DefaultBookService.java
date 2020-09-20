@@ -64,7 +64,7 @@ public class DefaultBookService implements BookService {
     @Override
     public Book create(Book book) throws DuplicateIsbnException {
 
-        if (getByIsbn(book.getIsbn()).isPresent()) {
+        if (!getByIsbn(book.getIsbn()).isPresent()) {
             return bookRepository.save(book);
         }
         throw new DuplicateIsbnException(String.format("The provided ISBN: %s already exists. Use update instead!", book.getIsbn()));
