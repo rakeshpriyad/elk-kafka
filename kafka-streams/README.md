@@ -10,7 +10,7 @@ cd $CONFLUENT_HOME/bin
 confluent local start
 confluent local status
 
-kafka-topics --create --topic hello-producer --bootstrap-server 192.168.99.1:9092
+kafka-topics --create --topic hello-producer --bootstrap-server localhost:9092
 kafka-topics --create --topic employees --bootstrap-server 192.168.99.1:9092
 
 

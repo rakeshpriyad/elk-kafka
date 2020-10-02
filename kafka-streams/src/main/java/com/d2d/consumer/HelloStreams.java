@@ -20,6 +20,8 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.processor.Processor;
+import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,11 +35,13 @@ public class HelloStreams {
         Properties props = Configuration.getConsumerConfig("HelloStream");
         StreamsBuilder builder = new StreamsBuilder();
         KStream<Integer, String> kStream = builder.stream(topicName);
+
         kStream.foreach((k, v) -> System.out.println("Key = " + k + " Value = " + v));
         //kStream.peek((k, v) -> System.out.println("Key = " + k + " Value = " + v));
         Topology topology = builder.build();
 
         KafkaStreams streams = new KafkaStreams(topology, props);
+       // streams.allMetadata().stream().forEach(x-> x.);
 
         logger.info("Starting the stream");
         streams.start();
